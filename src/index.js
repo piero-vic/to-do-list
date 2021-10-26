@@ -1,6 +1,6 @@
-import './style.css'
+import './style.css';
 
-let toDoListItems = [
+const toDoListItems = [
   {
     description: 'Finish project',
     completed: false,
@@ -16,19 +16,19 @@ let toDoListItems = [
     completed: false,
     index: 2,
   },
-]
+];
 
-const populateList = function() {
+function populateList() {
   const todoList = document.getElementById('todo-list');
 
   toDoListItems.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-    <input type="checkbox" name="" value="">
+    <input class="checkbox" type="checkbox" name="" value="">
     <span>${item.description}</span>
     `;
     todoList.appendChild(listItem);
   });
 }
 
-populateList()
+populateList();
