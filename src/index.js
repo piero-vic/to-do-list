@@ -23,7 +23,10 @@ const populateList = function() {
 
   toDoListItems.forEach((item) => {
     const listItem = document.createElement('li');
-    listItem.innerHTML = item.description;
+    listItem.innerHTML = `
+    <input type="checkbox" name="" value="">
+    <span>${item.description}</span>
+    `;
     todoList.appendChild(listItem);
   });
 }
