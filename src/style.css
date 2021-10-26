@@ -1,0 +1,38 @@
+.body {
+  margin: 0;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.main-panel {
+  border: 1px solid black;
+  max-width: 50%;
+  margin: auto;
+  box-sizing: border-box;
+  display: grid;
+}
+
+.list-title {
+  font-size: inherit;
+  margin: 0;
+}
+
+.add-input {
+  border: 1px solid black;
+  font-style: italic;
+}
+
+.list-title,
+.add-input,
+li {
+  padding: 10px;
+}
