@@ -53,3 +53,8 @@ li,
   font-size: 14px;
   border: none;
 }
+
+.complete {
+  text-decoration: line-through;
+  color: grey;
+}
