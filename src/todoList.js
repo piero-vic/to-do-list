@@ -1,11 +1,11 @@
-export class ToDo {
-  static list = []
+export default class ToDo {
+  static list = [];
 
-  constructor(description) {
-    this.description = description,
-    this.complete = false,
-    this.index = ToDo.list.length
-    ToDo.list.push(this)
+  constructor(description, complete = false) {
+    this.description = description;
+    this.complete = complete;
+    this.index = ToDo.list.length;
+    ToDo.list.push(this);
   }
 
   update() {
