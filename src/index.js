@@ -1,6 +1,8 @@
 import './style.css';
 import ToDo from './todoList';
 
+const defaultList = ['Finish project', 'Groceries', 'Fix laptop'];
+
 // Add items to UI
 function populateList() {
   const todoList = document.getElementById('todo-list');
@@ -24,9 +26,7 @@ const list = JSON.parse(localStorage.getItem('todoList'));
 if (list) {
   list.forEach((item) => new ToDo(item.description, item.complete));
 } else {
-  ToDo('Finish project');
-  ToDo('Groceries');
-  ToDo('Fix laptop');
+  defaultList.forEach((item) => new ToDo(item, false));
 }
 
 populateList();
