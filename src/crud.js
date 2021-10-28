@@ -82,10 +82,10 @@ export function populateList() {
 export function add(e) {
   if (e.code === 'Enter') {
     // Create new item
-    new ToDo(this.value, false);
+    const newItem = new ToDo(this.value, false);
 
     // Update local storage
-    localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+    localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
 
     // Update UI
     this.value = '';
