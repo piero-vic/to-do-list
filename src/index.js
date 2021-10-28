@@ -1,5 +1,7 @@
 import './style.css';
-import { add, edit, deleteItem, deleteAllCompleted } from './crud.js';
+import {
+  add, edit, deleteItem, deleteAllCompleted,
+} from './crud';
 import ToDo from './todoList';
 import DeleteButton from './delete-btn.png';
 
@@ -8,7 +10,7 @@ const defaultList = ['Finish project', 'Groceries', 'Fix laptop'];
 // Add items to UI
 export function populateList() {
   const todoList = document.getElementById('todo-list');
-  todoList.innerHTML = ''
+  todoList.innerHTML = '';
 
   ToDo.list.forEach((item) => {
     const listItem = document.createElement('li');
@@ -64,12 +66,12 @@ if (list) {
 }
 
 // Add
-const addInput = document.getElementById('add-input')
-addInput.addEventListener('keydown', add)
+const addInput = document.getElementById('add-input');
+addInput.addEventListener('keydown', add);
 
 // Delete all completed
-const clearButton = document.getElementById('clear-btn')
-clearButton.addEventListener('click', deleteAllCompleted)
+const clearButton = document.getElementById('clear-btn');
+clearButton.addEventListener('click', deleteAllCompleted);
 
 // Populate UI
 populateList();
