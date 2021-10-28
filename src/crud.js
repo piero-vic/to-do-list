@@ -29,7 +29,6 @@ export function edit(e) {
   localStorage.setItem('todoList', JSON.stringify(ToDo.list));
 
   if (e.code === 'Enter'){
-
     // Update UI
     this.previousElementSibling.style.display = 'block'
     this.classList.toggle('edit-item');
@@ -41,6 +40,17 @@ export function deleteItem() {
   // Update list
   const index = parseInt(this.parentNode.id, 10)
   ToDo.list = ToDo.list.filter(item => item !== ToDo.list[index])
+  // Update indexes
+  ToDo.list.forEach((item, i) => item.index = i);
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+  // Update UI
+  populateList()
+}
+
+export function deleteAllCompleted() {
+  // Update list
+  ToDo.list = ToDo.list.filter(item => item.complete === false)
   // Update indexes
   ToDo.list.forEach((item, i) => item.index = i);
   // Update local storage

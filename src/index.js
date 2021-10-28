@@ -1,5 +1,5 @@
 import './style.css';
-import { add, edit, deleteItem } from './crud.js';
+import { add, edit, deleteItem, deleteAllCompleted } from './crud.js';
 import ToDo from './todoList';
 import DeleteButton from './delete-btn.png';
 
@@ -31,9 +31,10 @@ export function populateList() {
 
     // Update
     checkbox.addEventListener('change', () => {
-      const index = parseInt(checkbox.parentNode.id, 10);
+      const index = parseInt(listItem.id, 10);
       ToDo.list[index].update();
-      checkbox.nextElementSibling.classList.toggle('complete');
+      text.classList.toggle('complete');
+      textInput.classList.toggle('complete');
       localStorage.setItem('todoList', JSON.stringify(ToDo.list));
     });
 
@@ -65,6 +66,10 @@ if (list) {
 // Add
 const addInput = document.getElementById('add-input')
 addInput.addEventListener('keydown', add)
+
+// Delete all completed
+const clearButton = document.getElementById('clear-btn')
+clearButton.addEventListener('click', deleteAllCompleted)
 
 // Populate UI
 populateList();
