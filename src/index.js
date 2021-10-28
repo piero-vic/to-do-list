@@ -1,11 +1,11 @@
 import './style.css';
-import { edit } from './crud.js';
+import { add, edit } from './crud.js';
 import ToDo from './todoList';
 
 const defaultList = ['Finish project', 'Groceries', 'Fix laptop'];
 
 // Add items to UI
-function populateList() {
+export function populateList() {
   const todoList = document.getElementById('todo-list');
   todoList.innerHTML = ''
 
@@ -26,7 +26,7 @@ function populateList() {
     const text = listItem.querySelector('span');
     const textInput = listItem.querySelector('textarea');
 
-    // Edit functionality
+    // Edit
     text.addEventListener('click', () => {
       text.style.display = 'none';
       textInput.classList.toggle('edit-item');
@@ -48,6 +48,12 @@ if (list) {
   defaultList.forEach((item) => new ToDo(item, false));
 }
 
+
+// Add
+const addInput = document.getElementById('add-input')
+addInput.addEventListener('keydown', add)
+
+// Populate UI
 populateList();
 
 // Add event listener to checkboxes

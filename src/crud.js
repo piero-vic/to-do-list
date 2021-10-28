@@ -1,4 +1,20 @@
 import ToDo from './todoList';
+import { populateList } from './index.js';
+
+// Add
+export function add(e) {
+  if (e.code === 'Enter'){
+    // Create new item
+    new ToDo(this.value, false)
+
+    // Update local storage
+    localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+
+    // Update UI
+    this.value = ''
+    populateList()
+  }
+}
 
 // Edit
 export function edit(e) {
