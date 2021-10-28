@@ -1,6 +1,7 @@
 import './style.css';
-import { add, edit } from './crud.js';
+import { add, edit, deleteItem } from './crud.js';
 import ToDo from './todoList';
+import DeleteButton from './delete-btn.png';
 
 const defaultList = ['Finish project', 'Groceries', 'Fix laptop'];
 
@@ -18,6 +19,7 @@ export function populateList() {
     <input class="checkbox" type="checkbox">
     <span>${item.description}</span>
     <textarea class="text-area" maxlength="30">${item.description}</textarea>
+    <img class="cancel-btn" src="${DeleteButton}">
     `;
 
     todoList.appendChild(listItem);
@@ -25,6 +27,7 @@ export function populateList() {
     const checkbox = listItem.querySelector('input');
     const text = listItem.querySelector('span');
     const textInput = listItem.querySelector('textarea');
+    const deleteButton = listItem.querySelector('img');
 
     // Update
     checkbox.addEventListener('change', () => {
@@ -40,6 +43,9 @@ export function populateList() {
       textInput.classList.toggle('edit-item');
     });
     textInput.addEventListener('keydown', edit);
+
+    // Delete
+    deleteButton.addEventListener('click', deleteItem);
 
     if (item.complete) {
       checkbox.checked = true;

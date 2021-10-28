@@ -64,11 +64,26 @@ li {
   display: none;
 }
 
+.item-container {
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.item-container span,
+.item-container textarea {
+  width: 200px;
+  flex-grow: 1;
+}
+
+.cancel-btn {
+  height: 20px;
+  width: 20px;
+}
+
 .edit-item {
   display: inline;
   font: inherit;
   padding: 0;
-  width: 90%;
   height: 18px;
   border: none;
   outline: none;
