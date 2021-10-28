@@ -1,4 +1,5 @@
 import './style.css';
+import { edit } from './crud.js';
 import ToDo from './todoList';
 
 const defaultList = ['Finish project', 'Groceries', 'Fix laptop'];
@@ -6,25 +7,31 @@ const defaultList = ['Finish project', 'Groceries', 'Fix laptop'];
 // Add items to UI
 function populateList() {
   const todoList = document.getElementById('todo-list');
+  todoList.innerHTML = ''
 
   ToDo.list.forEach((item) => {
     const listItem = document.createElement('li');
+    listItem.setAttribute('id', item.index);
     listItem.classList = 'item-container';
+
     listItem.innerHTML = `
-    <input id="${item.index}" class="checkbox" type="checkbox">
+    <input class="checkbox" type="checkbox">
     <span>${item.description}</span>
     <textarea class="text-area" maxlength="30">${item.description}</textarea>
     `;
+
     todoList.appendChild(listItem);
 
     const checkbox = listItem.querySelector('input');
     const text = listItem.querySelector('span');
     const textInput = listItem.querySelector('textarea');
 
+    // Edit functionality
     text.addEventListener('click', () => {
       text.style.display = 'none';
       textInput.classList.toggle('edit-item');
     });
+    textInput.addEventListener('keydown', edit);
 
     if (item.complete) {
       checkbox.checked = true;
@@ -47,7 +54,7 @@ populateList();
 const listCheckboxes = [...document.getElementsByClassName('checkbox')];
 listCheckboxes.forEach((element) => {
   element.addEventListener('change', () => {
-    const index = parseInt(element.id, 10);
+    const index = parseInt(element.parentNode.id, 10);
     ToDo.list[index].update();
     element.nextElementSibling.classList.toggle('complete');
     localStorage.setItem('todoList', JSON.stringify(ToDo.list));
