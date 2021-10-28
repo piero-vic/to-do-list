@@ -42,10 +42,11 @@ li {
 
 .list-title,
 .add-input,
-li,
+.item-container,
 .clear-btn {
   padding: 15px;
   border-bottom: 1px solid #b5b5b5;
+  display: flex;
 }
 
 .clear-btn {
@@ -57,4 +58,21 @@ li,
 .complete {
   text-decoration: line-through;
   color: grey;
+}
+
+.text-area {
+  display: none;
+}
+
+.edit-item {
+  display: inline;
+  font: inherit;
+  padding: 0;
+  width: 90%;
+  height: 18px;
+  border: none;
+  outline: none;
+  resize: none;
+  cursor: text;
+  overflow: auto;
 }
