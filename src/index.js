@@ -26,6 +26,14 @@ export function populateList() {
     const text = listItem.querySelector('span');
     const textInput = listItem.querySelector('textarea');
 
+    // Update
+    checkbox.addEventListener('change', () => {
+      const index = parseInt(checkbox.parentNode.id, 10);
+      ToDo.list[index].update();
+      checkbox.nextElementSibling.classList.toggle('complete');
+      localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+    });
+
     // Edit
     text.addEventListener('click', () => {
       text.style.display = 'none';
@@ -48,21 +56,9 @@ if (list) {
   defaultList.forEach((item) => new ToDo(item, false));
 }
 
-
 // Add
 const addInput = document.getElementById('add-input')
 addInput.addEventListener('keydown', add)
 
 // Populate UI
 populateList();
-
-// Add event listener to checkboxes
-const listCheckboxes = [...document.getElementsByClassName('checkbox')];
-listCheckboxes.forEach((element) => {
-  element.addEventListener('change', () => {
-    const index = parseInt(element.parentNode.id, 10);
-    ToDo.list[index].update();
-    element.nextElementSibling.classList.toggle('complete');
-    localStorage.setItem('todoList', JSON.stringify(ToDo.list));
-  });
-});
