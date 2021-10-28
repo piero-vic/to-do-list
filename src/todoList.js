@@ -6,6 +6,7 @@ export default class ToDo {
     this.complete = complete;
     this.index = ToDo.list.length;
     ToDo.list.push(this);
+    this.getList = () => ToDo.list;
   }
 
   update() {
