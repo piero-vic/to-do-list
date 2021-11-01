@@ -4,6 +4,10 @@
 
 > To-do list project for Microverse.
 
+## Try the app
+
+- [Live demo](https://piero-vic.github.io/to-do-list/dist/)
+
 ## Built With
 
 - HTML, CSS and JavaScript
