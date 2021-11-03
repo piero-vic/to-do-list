@@ -62,11 +62,8 @@ export function populateList() {
     deleteButton.addEventListener('click', () => {
       // Update list
       const index = parseInt(listItem.id, 10);
-      ToDo.list = ToDo.list.filter((item) => item !== ToDo.list[index]);
-      // Update indexes
-      ToDo.list.forEach((item, i) => { item.index = i; });
-      // Update local storage
-      localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+      // Delete item
+      remove(index)
       // Update UI
       populateList();
     });
@@ -84,7 +81,14 @@ export function add(value) {
   const newItem = new ToDo(value);
   // Update local storage
   localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
-  return JSON.parse(localStorage.getItem('todoList'));
+}
+
+export function remove(index) {
+  ToDo.list = ToDo.list.filter((item) => item !== ToDo.list[index]);
+  // Update indexes
+  ToDo.list.forEach((item, i) => { item.index = i; });
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
 }
 
 // Clear completed functionality
