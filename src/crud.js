@@ -79,18 +79,11 @@ export function populateList() {
 }
 
 // Add functionality
-export function add(e) {
-  if (e.code === 'Enter') {
-    // Create new item
-    const newItem = new ToDo(this.value, false);
-
-    // Update local storage
-    localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
-
-    // Update UI
-    this.value = '';
-    populateList();
-  }
+export function add(value) {
+  // Create new item
+  const newItem = new ToDo(value);
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
 }
 
 // Clear completed functionality

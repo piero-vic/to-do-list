@@ -10,7 +10,13 @@ if (list) {
 
 // Add
 const addInput = document.getElementById('add-input');
-addInput.addEventListener('keydown', add);
+addInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    add(addInput.value);
+    addInput.value = '';
+    populateList();
+  }
+});
 
 // Delete all completed
 const clearButton = document.getElementById('clear-btn');
