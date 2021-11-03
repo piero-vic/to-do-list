@@ -84,6 +84,7 @@ export function add(value) {
   const newItem = new ToDo(value);
   // Update local storage
   localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
+  return JSON.parse(localStorage.getItem('todoList'));
 }
 
 // Clear completed functionality

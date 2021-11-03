@@ -6,7 +6,9 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/mock/fileMock.js"
-    }
+    },
+    "resetMocks": false,
+    "setupFiles": ["jest-localstorage-mock"]
   },
   "scripts": {
     "test": "jest --coverage",
@@ -33,6 +35,7 @@
     "eslint-plugin-import": "^2.25.2",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
+    "jest-localstorage-mock": "^2.4.18",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
