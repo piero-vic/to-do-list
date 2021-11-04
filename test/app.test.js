@@ -23,4 +23,8 @@ describe('Updating Items', () => {
     newItem.update()
     expect(newItem.complete).toBeTruthy()
   })
+
+  test('Edit item', () => {
+    
+  })
 });

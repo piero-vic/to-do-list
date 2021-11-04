@@ -18,6 +18,13 @@ export function remove(index) {
   localStorage.setItem('todoList', JSON.stringify(ToDo.list));
 }
 
+export function edit(index, text) {
+  ToDo.list[index].description = text;
+
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+}
+
 // Add items to UI
 export function populateList() {
   const todoList = document.getElementById('todo-list');
@@ -63,10 +70,7 @@ export function populateList() {
 
       // Update list
       const index = parseInt(listItem.id, 10);
-      ToDo.list[index].description = text.innerHTML;
-
-      // Update local storage
-      localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+      edit(index, text.innerHTML);
 
       if (e.code === 'Enter') {
         // Update UI
