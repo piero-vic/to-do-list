@@ -1,4 +1,5 @@
 import { add, remove } from '../src/crud';
+import ToDo from '../src/todoList';
 
 describe('Tests for todo list app', () => {
   test('should add item to the list', () => {
@@ -13,4 +14,13 @@ describe('Tests for todo list app', () => {
     const storage = JSON.parse(localStorage.getItem('todoList'));
     expect(storage).toHaveLength(1);
   });
+});
+
+describe('Updating Items', () => {
+  test('Update complete status', () => {
+    const newItem = new ToDo('some text');
+    expect(newItem.complete).toBeFalsy()
+    newItem.update()
+    expect(newItem.complete).toBeTruthy()
+  })
 });
