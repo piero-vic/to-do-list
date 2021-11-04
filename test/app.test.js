@@ -1,4 +1,6 @@
-import { add, remove, edit, deleteAllCompleted } from '../src/crud';
+import {
+  add, remove, edit, deleteAllCompleted,
+} from '../src/crud';
 import ToDo from '../src/todoList';
 
 describe('Tests for todo list app', () => {
@@ -29,9 +31,8 @@ describe('Tests for todo list app', () => {
   });
 
   test('Delete all completed', () => {
-    const newItem = new ToDo('completed item', true);
     deleteAllCompleted(ToDo);
-    ToDo.list.forEach(item => {
+    ToDo.list.forEach((item) => {
       expect(item.complete).toBeFalsy();
     });
   });
