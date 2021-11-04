@@ -20,7 +20,10 @@ addInput.addEventListener('keydown', (event) => {
 
 // Delete all completed
 const clearButton = document.getElementById('clear-btn');
-clearButton.addEventListener('click', deleteAllCompleted);
+clearButton.addEventListener('click', () => {
+  deleteAllCompleted(ToDo);
+  populateList();
+});
 
 // Populate UI
 populateList();

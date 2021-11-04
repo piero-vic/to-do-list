@@ -18,6 +18,12 @@ export function remove(index) {
   localStorage.setItem('todoList', JSON.stringify(ToDo.list));
 }
 
+export function edit(index, text) {
+  ToDo.list[index].description = text;
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+}
+
 // Add items to UI
 export function populateList() {
   const todoList = document.getElementById('todo-list');
@@ -63,10 +69,7 @@ export function populateList() {
 
       // Update list
       const index = parseInt(listItem.id, 10);
-      ToDo.list[index].description = text.innerHTML;
-
-      // Update local storage
-      localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+      edit(index, text.innerHTML);
 
       if (e.code === 'Enter') {
         // Update UI
@@ -93,13 +96,11 @@ export function populateList() {
 }
 
 // Clear completed functionality
-export function deleteAllCompleted() {
+export function deleteAllCompleted(todo) {
   // Update list
-  ToDo.list = ToDo.list.filter((item) => item.complete === false);
+  todo.list = todo.list.filter((item) => item.complete === false);
   // Update indexes
-  ToDo.list.forEach((item, i) => { item.index = i; });
+  todo.list.forEach((item, i) => { item.index = i; });
   // Update local storage
-  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
-  // Update UI
-  populateList();
+  localStorage.setItem('todoList', JSON.stringify(todo.list));
 }
