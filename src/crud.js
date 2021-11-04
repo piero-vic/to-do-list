@@ -20,7 +20,6 @@ export function remove(index) {
 
 export function edit(index, text) {
   ToDo.list[index].description = text;
-
   // Update local storage
   localStorage.setItem('todoList', JSON.stringify(ToDo.list));
 }
@@ -97,13 +96,11 @@ export function populateList() {
 }
 
 // Clear completed functionality
-export function deleteAllCompleted() {
+export function deleteAllCompleted(todo) {
   // Update list
-  ToDo.list = ToDo.list.filter((item) => item.complete === false);
+  todo.list = todo.list.filter((item) => item.complete === false);
   // Update indexes
-  ToDo.list.forEach((item, i) => { item.index = i; });
+  todo.list.forEach((item, i) => { item.index = i; });
   // Update local storage
-  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
-  // Update UI
-  populateList();
+  localStorage.setItem('todoList', JSON.stringify(todo.list));
 }

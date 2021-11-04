@@ -1,4 +1,4 @@
-import { add, remove, edit } from '../src/crud';
+import { add, remove, edit, deleteAllCompleted } from '../src/crud';
 import ToDo from '../src/todoList';
 
 describe('Tests for todo list app', () => {
@@ -9,24 +9,30 @@ describe('Tests for todo list app', () => {
     expect(storage).toHaveLength(2);
   });
 
-  test('should remove an item from the list', () => {
+  test('Should remove an item from the list', () => {
     remove(0);
     const storage = JSON.parse(localStorage.getItem('todoList'));
     expect(storage).toHaveLength(1);
   });
-});
 
-describe('Updating Items', () => {
   test('Update complete status', () => {
     const newItem = new ToDo('some text');
-    expect(newItem.complete).toBeFalsy()
-    newItem.update()
-    expect(newItem.complete).toBeTruthy()
-  })
+    expect(newItem.complete).toBeFalsy();
+    newItem.update();
+    expect(newItem.complete).toBeTruthy();
+  });
 
   test('Edit item', () => {
     edit(0, 'edited text');
     const storage = JSON.parse(localStorage.getItem('todoList'));
-    expect(storage[0].description).toBe('edited text')
-  })
+    expect(storage[0].description).toBe('edited text');
+  });
+
+  test('Delete all completed', () => {
+    const newItem = new ToDo('completed item', true);
+    deleteAllCompleted(ToDo);
+    ToDo.list.forEach(item => {
+      expect(item.complete).toBeFalsy();
+    });
+  });
 });
