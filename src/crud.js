@@ -1,6 +1,23 @@
 import ToDo from './todoList';
 import DeleteButton from './delete-btn.png';
 
+// Add functionality
+export function add(value) {
+  // Create new item
+  const newItem = new ToDo(value);
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
+}
+
+// Remove Functionality
+export function remove(index) {
+  ToDo.list = ToDo.list.filter((item) => item !== ToDo.list[index]);
+  // Update indexes
+  ToDo.list.forEach((item, i) => { item.index = i; });
+  // Update local storage
+  localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+}
+
 // Add items to UI
 export function populateList() {
   const todoList = document.getElementById('todo-list');
@@ -62,11 +79,8 @@ export function populateList() {
     deleteButton.addEventListener('click', () => {
       // Update list
       const index = parseInt(listItem.id, 10);
-      ToDo.list = ToDo.list.filter((item) => item !== ToDo.list[index]);
-      // Update indexes
-      ToDo.list.forEach((item, i) => { item.index = i; });
-      // Update local storage
-      localStorage.setItem('todoList', JSON.stringify(ToDo.list));
+      // Delete item
+      remove(index);
       // Update UI
       populateList();
     });
@@ -76,21 +90,6 @@ export function populateList() {
       text.classList = 'complete';
     }
   });
-}
-
-// Add functionality
-export function add(e) {
-  if (e.code === 'Enter') {
-    // Create new item
-    const newItem = new ToDo(this.value, false);
-
-    // Update local storage
-    localStorage.setItem('todoList', JSON.stringify(newItem.getList()));
-
-    // Update UI
-    this.value = '';
-    populateList();
-  }
 }
 
 // Clear completed functionality
